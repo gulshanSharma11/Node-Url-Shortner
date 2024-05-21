@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+       font-family: Arial, sans-serif;
+       background-color: #f4f4f4;
+       margin: 0;
+       padding: 0;
+   }
+   h1 {
+       text-align: center;
+       color: #333;
+   }
+   form {
+       max-width: 400px;
+       margin: 50px auto;
+       padding: 20px;
+       background: #fff;
+       border-radius: 8px;
+       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   }
+   label {
+       display: block;
+       font-weight: bold;
+       margin-bottom: 5px;
+   }
+   input[type="text"] {
+       width: calc(100% - 10px);
+       padding: 10px;
+       margin-bottom: 20px;
+       border: 1px solid #ccc;
+       border-radius: 5px;
+   }
+   button[type="submit"] {
+       background-color: #4CAF50;
+       color: white;
+       padding: 10px 20px;
+       border: none;
+       border-radius: 5px;
+       cursor: pointer;
+       transition: background-color 0.3s;
+   }
+   button[type="submit"]:hover {
+       background-color: #45a049;
+   }
+   .generated-url {
+       text-align: center;
+       margin-top: 20px;
+   }
+   table {
+       width: 100%;
+       border-collapse: collapse;
+       margin: 100px;
+   }
+   th, td {
+       padding: 10px;
+       border-bottom: 1px solid #ddd;
+       text-align: left;
+   }
+   th {
+       background-color: #f2f2f2;
+   }
+       </style>
+</head>
+<body>
+    <h1>Url Shortner</h1>
+    <form  method="POST" action="/url">
+        <label for="url">Enter your URL</label>
+        <input type="text" name="url" placeholder="www.example.com">
+        <button type="submit">Submit</button>
+        <div>
+            <% if (locals.id) { %>
+             <p>Generated Url : http://localhost:7001/<%=id%></p>
+            <% } %>
+         </div>
+    </form>
+   </div>
+   
+<% if (locals.urls) { %>
+    <div>
+        <table>
+            <tr>
+                <th>S.No</th>
+                <th>ShortId</th>
+                <th>Original URLs</th>
+                
+            </tr>
+            
+            <% urls.forEach((url,index) => { %>
+                <tr>
+                <td><%= index+1%></td>
+                <td><%= url.shortId%></td>
+                <td><%= url.redirectURL%></td>
+               
+            </tr>
+            <% }) %>
+        
+            
+        </table>
+    </div>
+    <% } %>
+</body>
+</html>
